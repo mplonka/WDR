@@ -1434,7 +1434,7 @@ def processExtraAppOption(mo, name, value):
         )
 
 
-def _importApplicationManifest(filename, variables):
+def loadApplicationManifest(filename, variables={}):
     fi = open(filename, 'r')
     try:
         manifestObjects = []
@@ -1593,7 +1593,7 @@ def importApplicationManifest(
     listener = listener or ApplicationDeploymentListener()
     manifestPath = manifestPath or _defaultManifestPath()
     affectedApplications = []
-    for mo in _importApplicationManifest(
+    for mo in loadApplicationManifest(
         _locateManifestFile(filename, manifestPath), variables
     ):
         if _isApplicationInstalled(mo.name):
